@@ -38,12 +38,11 @@ const withLocation = (ComponentToWrap: any) => (props: Props) => (
 
 const MoonpayWidget = ({ search }: Props) => {
   let moonpaySrcAddress =
-    'https://buy-staging.moonpay.io?apiKey=pk_test_3aM6rCKM7VxglAXwpo6xEm031iQWBbZq';
+    'https://buy-staging.moonpay.io?apiKey=pk_test_3aM6rCKM7VxglAXwpo6xEm031iQWBbZq&colorCode=%23163150';
   if (search && search.currCode && search.walletAddr) {
     moonpaySrcAddress += '&walletAddress=' + search.walletAddr;
     moonpaySrcAddress += '&currencyCode=' + search.currCode;
   }
-
   return (
     <WidgetContainer tabindex="-1" role="group">
       <MoonpayWidgetIFrame
