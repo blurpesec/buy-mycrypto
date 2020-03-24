@@ -4,14 +4,6 @@
 
 This repository contains the code for the [buy.mycrypto.com](https://buy.mycrypto.com)
 
-## Getting Started
-
-In order for the knowledge base to compile locally, you need to make sure the content is fetched too. To do this, run the following command:
-
-```bash
-git submodule update --init --remote --recursive
-```
-
 ### Development
 
 To start a development server, run the following command
