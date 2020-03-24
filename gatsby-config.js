@@ -1,75 +1,41 @@
-const path = require('path');
+const path = require("path");
 
 module.exports = {
   siteMetadata: {
-    title: 'MyCrypto Asset Purchase',
+    title: "MyCrypto | Buy ETH Instantly",
     description:
-      'Buy Ether, Dai, and other Ethereum-blockchain assets while supporting MyCrypto',
-    siteUrl: 'https://buy.mycrypto.com',
-    baseUrl: 'https://buy.mycrypto.com'
+      "Buy Ether, Dai, and other Ethereum-blockchain assets while supporting MyCrypto",
+    siteUrl: "https://buy.mycrypto.com",
+    baseUrl: "https://buy.mycrypto.com"
   },
   // Used for deployment to gh-pages
-  pathPrefix: '/',
+  pathPrefix: "/",
   plugins: [
-    'gatsby-plugin-typescript',
-    'gatsby-plugin-react-helmet-async',
-    'gatsby-plugin-sitemap',
-    'gatsby-plugin-sharp',
-    'gatsby-plugin-catch-links',
-    'gatsby-plugin-styled-components',
+    "gatsby-plugin-typescript",
+    "gatsby-plugin-react-helmet-async",
+    "gatsby-plugin-sitemap",
+    "gatsby-plugin-sharp",
+    "gatsby-plugin-catch-links",
+    "gatsby-plugin-styled-components",
     {
-      resolve: 'gatsby-plugin-mdx',
+      resolve: "gatsby-transformer-yaml",
       options: {
-        extensions: ['.mdx', '.md'],
-        gatsbyRemarkPlugins: [
-          {
-            resolve: 'gatsby-remark-images',
-            options: {
-              maxWidth: 750
-            }
-          },
-          {
-            resolve: 'gatsby-remark-external-links',
-            options: {
-              target: '_blank',
-              rel: 'noopener noreferrer'
-            }
-          },
-          {
-            resolve: 'gatsby-remark-static-images'
-          }
-        ],
-        plugins: [
-          {
-            resolve: 'gatsby-remark-images',
-            options: {
-              maxWidth: 750
-            }
-          }
-        ],
-        remarkPlugins: [require('remark-kbd')],
-        rehypePlugins: [require('rehype-slug')]
+        typeName: "CategoryData"
       }
     },
     {
-      resolve: 'gatsby-transformer-yaml',
+      resolve: "gatsby-source-filesystem",
       options: {
-        typeName: 'CategoryData'
+        path: path.resolve(__dirname, "src/assets/images"),
+        name: "images"
       }
     },
     {
-      resolve: 'gatsby-source-filesystem',
+      resolve: "gatsby-plugin-favicons",
       options: {
-        path: path.resolve(__dirname, 'src/assets/images'),
-        name: 'images'
-      }
-    },
-    {
-      resolve: 'gatsby-plugin-favicons',
-      options: {
-        logo: path.resolve(__dirname, 'src/assets/images/logo.svg'),
-        title: 'MyCrypto Knowledge Base',
-        background: '#1d334f',
+        logo: path.resolve(__dirname, "src/assets/images/logo.svg"),
+        title: "MyCrypto | Buy Crypto Assets",
+        background: "#1d334f",
         icons: {
           appleStartup: {
             offset: 20
@@ -78,11 +44,11 @@ module.exports = {
       }
     },
     {
-      resolve: 'gatsby-plugin-matomo',
+      resolve: "gatsby-plugin-matomo",
       options: {
-        siteId: '3',
-        matomoUrl: 'https://analytics.mycryptoapi.com',
-        siteUrl: 'https://buy.mycrypto.com/',
+        siteId: "3",
+        matomoUrl: "https://analytics.mycryptoapi.com",
+        siteUrl: "https://buy.mycrypto.com/",
         disableCookies: true
       }
     }

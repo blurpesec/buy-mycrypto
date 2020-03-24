@@ -11,7 +11,6 @@ import Toggle from './Toggle';
 interface Props {
   left: ReactElement[];
   right: ReactElement[];
-  navigation: ReactElement[];
 }
 
 const HeaderWrapper = styled.header`
@@ -42,15 +41,8 @@ const HeaderButtons = styled.ul<HeaderButtonProps>`
     flex-direction: column;
     width: 100%;
     padding: 1.5rem 0;
-    border-bottom: 1px solid ${({ theme }: { theme: DefaultTheme }) => theme.headerBorder};
-  `};
-`;
-
-const HeaderBottom = styled(HeaderContainer)`
-  justify-content: center;
-
-  ${breakpoint('lg', 'max')`
-    display: none;
+    border-bottom: 1px solid ${({ theme }: { theme: DefaultTheme }) =>
+      theme.headerBorder};
   `};
 `;
 
@@ -77,7 +69,7 @@ const LeftDesktopButtons = styled(DesktopButtons)`
   `};
 `;
 
-const Header: FunctionComponent<Props> = ({ left, right, navigation }) => {
+const Header: FunctionComponent<Props> = ({ left, right }) => {
   const isDrawerOpen = useSelector(state => state.navigation.isDrawerOpen);
   const dispatch = useDispatch();
 
@@ -88,16 +80,6 @@ const Header: FunctionComponent<Props> = ({ left, right, navigation }) => {
   const handleClose = () => {
     dispatch(setDrawerOpen(false));
   };
-
-  const navigationMenu = (
-    <HeaderButtons>
-      {navigation.map((button, index) => (
-        <HeaderButton key={`navigation-button-${index}`} onClick={handleClose}>
-          {button}
-        </HeaderButton>
-      ))}
-    </HeaderButtons>
-  );
 
   const leftMenu = (
     <HeaderButtons>
@@ -112,7 +94,9 @@ const Header: FunctionComponent<Props> = ({ left, right, navigation }) => {
   const rightMenu = (
     <HeaderButtons>
       {right.map((button, index) => (
-        <HeaderButton key={`right-header-button-${index}`}>{button}</HeaderButton>
+        <HeaderButton key={`right-header-button-${index}`}>
+          {button}
+        </HeaderButton>
       ))}
     </HeaderButtons>
   );
@@ -120,19 +104,18 @@ const Header: FunctionComponent<Props> = ({ left, right, navigation }) => {
   return (
     <HeaderWrapper>
       <Drawer isOpen={isDrawerOpen}>
-        {navigationMenu}
         {leftMenu}
         {rightMenu}
       </Drawer>
 
       <HeaderContainer>
         <Toggle isOpen={isDrawerOpen} onClick={handleToggle} />
-        <LeftDesktopButtons position="flex-start">{leftMenu}</LeftDesktopButtons>
+        <LeftDesktopButtons position="flex-start">
+          {leftMenu}
+        </LeftDesktopButtons>
         <Logo />
         <DesktopButtons position="flex-end">{rightMenu}</DesktopButtons>
       </HeaderContainer>
-
-      <HeaderBottom>{navigationMenu}</HeaderBottom>
     </HeaderWrapper>
   );
 };

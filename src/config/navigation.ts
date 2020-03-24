@@ -19,15 +19,8 @@ export const LEFT_HEADER_ITEMS: HeaderItem[] = [
 
 export const NAVIGATION_ITEMS: HeaderItem[] = [
   {
-    title: 'Knowledge Base',
-    to: '/'
-  },
-  /*{
-    title: 'Troubleshooting',
-    to: '/tools/troubleshooting'
-  },*/
-  {
-    title: 'Contact Us',
-    to: '/contact-us'
+    title: 'MyCrypto.com',
+    to: 'https://mycrypto.com',
+    external: true
   }
 ];

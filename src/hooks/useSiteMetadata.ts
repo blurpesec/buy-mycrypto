@@ -7,7 +7,6 @@ interface QueryData {
       description: string;
       siteUrl: string;
       baseUrl: string;
-      recaptchaSitekey: string;
     };
   };
 }
@@ -27,7 +26,6 @@ export const useSiteMetadata = (): QueryData['site']['siteMetadata'] => {
             description
             siteUrl
             baseUrl
-            recaptchaSitekey
           }
         }
       }
